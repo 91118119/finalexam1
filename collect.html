@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>個人收藏網頁</title>
+    <link rel="stylesheet" href="collect.css">
+</head>
+<body>
+
+    <div class="gallery">
+        <img id="item1" src="剪刀.jpg" alt="收藏品1">
+        <img id="item2" src="石頭.jpg" alt="收藏品2">
+        <img id="item3" src="布.jpg" alt="收藏品3">
+    </div>
+
+    <div class="button-nav">
+        <button onclick="changeImage('prev')">上一項收藏</button>
+        <button onclick="changeImage('next')">下一項收藏</button>
+    </div>
+
+</body>
+</html>
+<style>
+/* 1. 設定背景顏色為粉紅色 */
+body {
+    background-color: pink;
+    font-family: Arial, sans-serif;
+}
+
+/* 2. 設定圖片初始大小和邊框 */
+.gallery img {
+    width: 400px;
+    height: 300px;
+    border: 2px solid blue;
+    transition: all 1s ease;
+}
+
+/* 3. 設定滑鼠移到圖片上，圖片動態變化 */
+.gallery img:hover {
+    width: 500px;
+    height: 400px;
+}
+
+/* 設定按鈕樣式 */
+.button-nav button {
+    padding: 10px 20px;
+    margin: 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.button-nav button:hover {
+    background-color: #45a049;
+}
+</style>
+<script>
+    let currentItem = 1;
+
+    function changeImage(direction) {
+        if (direction === 'next') {
+            currentItem = (currentItem % 3) + 1;
+        } else {
+            currentItem = (currentItem === 1) ? 3 : currentItem - 1;
+        }
+
+        document.getElementById("item1").style.display = (currentItem === 1) ? "block" : "none";
+        document.getElementById("item2").style.display = (currentItem === 2) ? "block" : "none";
+        document.getElementById("item3").style.display = (currentItem === 3) ? "block" : "none";
+    }
+
+    // 初始顯示第一項收藏
+    window.onload = function() {
+        changeImage('next');
+    };
+</script>
